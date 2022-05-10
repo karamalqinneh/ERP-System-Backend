@@ -13,7 +13,11 @@ module.exports = (sequelize, DataTypes) => {
   }
   leaves.init(
     {
-      leave_id: DataTypes.INTEGER,
+      leave_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
       employee_id: DataTypes.INTEGER,
       status: DataTypes.ENUM,
       comments: DataTypes.STRING,

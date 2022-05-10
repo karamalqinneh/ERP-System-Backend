@@ -1,57 +1,54 @@
-'use strict';
+"use strict";
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('employees', {
-      id: {
+    await queryInterface.createTable("employees", {
+      employee_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      employee_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       first_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       last_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       phone: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       hire_date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       department: {
-        type: Sequelize.ENUM
+        type: Sequelize.ENUM,
       },
       job_title: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       salary: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       manager_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('employees');
-  }
+    await queryInterface.dropTable("employees");
+  },
 };
