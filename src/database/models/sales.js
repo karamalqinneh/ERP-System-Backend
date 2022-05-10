@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       supplier_id: DataTypes.INTEGER,
       account_manager: DataTypes.INTEGER,
       quantity: DataTypes.INTEGER,
-      taxExemptio: DataTypes.BOOLEAN,
+      tax_exemption: DataTypes.BOOLEAN,
       vat: DataTypes.DECIMAL,
       selling_price: DataTypes.INTEGER,
       payment_method: DataTypes.ENUM,
