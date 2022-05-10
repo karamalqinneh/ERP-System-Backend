@@ -2,13 +2,10 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("leaves", {
-      id: {
+      leave_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      leave_id: {
         type: Sequelize.INTEGER,
       },
       employee_id: {
