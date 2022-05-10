@@ -384,5 +384,15 @@ module.exports = {
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("customers");
+    await queryInterface.dropTable("employees");
+    await queryInterface.dropTable("items");
+    await queryInterface.dropTable("leaves");
+    await queryInterface.dropTable("managers");
+    await queryInterface.dropTable("products_groups");
+    await queryInterface.dropTable("purchases");
+    await queryInterface.dropTable("sales");
+    await queryInterface.dropTable("suppliers");
+    await queryInterface.dropTable("tickets");
+    await queryInterface.dropTable("vacations");
   },
 };
