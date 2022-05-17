@@ -3,6 +3,7 @@
 const bcrypt = require("bcrypt");
 const database = require("../../database/models/index");
 const bearerAuth = require("../../middlewares/auth/bearer.auth");
+const aclAuth = require("../../middlewares/auth/ACL.auth");
 require("dotenv").config();
 
 const updateUserInfoController = async (req, res, next) => {
