@@ -2,6 +2,7 @@
 
 const database = require("../../database/models/index");
 const bearerAuth = require("../../middlewares/auth/bearer.auth");
+const aclAuth = require("../../middlewares/auth/ACL.auth");
 require("dotenv").config();
 
 const deleteUserController = async (req, res, next) => {
