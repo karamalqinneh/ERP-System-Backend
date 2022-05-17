@@ -1,7 +1,7 @@
 "use strict";
 require("dotenv").config();
 const database = require("../../database/models/index");
-// const errorHandler = require("../../middleware/error-handlers/500");
+const errorHandler = require("../error-handlers/500");
 
 const bearerAuth = async (req, res, next) => {
   try {
@@ -20,7 +20,7 @@ const bearerAuth = async (req, res, next) => {
         res.status(403).send(`Error from bearerAuth: ${error} `);
       }
     } else {
-      next("errorHandler");
+      next(errorHandler);
     }
   } catch (e) {
     next("invalid Token");

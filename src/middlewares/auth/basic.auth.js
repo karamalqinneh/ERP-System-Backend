@@ -17,7 +17,7 @@ const basicAuth = async (req, res, next) => {
         req.user = validUser;
         next();
       } else {
-        res.status(403).send("invalid dddddddddd");
+        res.status(403).send("invalid");
       }
     } catch (error) {
       res.status(403).send("invalid error from basic ");
