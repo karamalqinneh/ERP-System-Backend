@@ -19,7 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       employee_id: DataTypes.INTEGER,
-      status: DataTypes.ENUM,
+      status: {
+        type: DataTypes.ENUM("Approved", "Declined", "Pending"),
+        defaultValue: "Pending",
+      },
       comments: DataTypes.STRING,
       start_date: DataTypes.DATE,
       end_date: DataTypes.DATE,

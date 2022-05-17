@@ -18,8 +18,11 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      resolution: DataTypes.ENUM,
-      status: DataTypes.ENUM,
+      resolution: DataTypes.STRING,
+      status: {
+        type: DataTypes.ENUM("Open", "Resolved", "Pending"),
+        defaultValue: "Pending",
+      },
       updates: DataTypes.STRING,
       details: DataTypes.STRING,
       date: DataTypes.DATE,

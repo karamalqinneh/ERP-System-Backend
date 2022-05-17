@@ -1,15 +1,13 @@
 "use strict";
+require("dotenv").config();
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const API_SECRET = process.env.API_SECRET;
 const { Model } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
   class employees extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
+    static associate(models) {}
   }
   employees.init(
     {
@@ -23,16 +21,75 @@ module.exports = (sequelize, DataTypes) => {
       email: DataTypes.STRING,
       phone: DataTypes.INTEGER,
       hire_date: DataTypes.DATE,
-      department: DataTypes.ENUM,
+      department: {
+        type: DataTypes.ENUM(
+          "HR",
+          "Sales",
+          "Marketing",
+          "Accounting",
+          "Commercial",
+          "Reporting",
+          "IT"
+        ),
+        defaultValue: "Marketing",
+      },
       job_title: DataTypes.STRING,
       salary: DataTypes.INTEGER,
       password: DataTypes.STRING,
       manager_id: DataTypes.INTEGER,
+      role: {
+        type: DataTypes.ENUM("admin", "manager", "employee"),
+        defaultValue: "employee",
+      },
+      token: {
+        type: DataTypes.VIRTUAL,
+      },
+      actions: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          const acl = {
+            user: ["read", "create"],
+            moderator: ["read", "create", "update", "delete"],
+            admin: [
+              "read",
+              "create",
+              "update",
+              "delete",
+              "delete all",
+              "edit all",
+            ],
+          };
+          return acl[this.role];
+        },
+      },
     },
     {
       sequelize,
       modelName: "employees",
     }
   );
+  employees.authenticateBasic = async function (email, password) {
+    const user = await this.findOne({ where: { email } });
+    const valid = await bcrypt.compare(password, user.password);
+    if (valid) {
+      let newToken = jwt.sign({ email: user.email }, API_SECRET);
+      user.token = newToken;
+      return user;
+    } else {
+      throw new Error("Invalid User");
+    }
+  };
+
+  employees.authenticateBearer = async function (token) {
+    const parsedToken = jwt.verify(token, API_SECRET);
+    const user = await this.findOne({
+      where: { email: parsedToken.email },
+    });
+    if (user) {
+      return user;
+    } else {
+      throw new Error("Invalid Token");
+    }
+  };
   return employees;
 };

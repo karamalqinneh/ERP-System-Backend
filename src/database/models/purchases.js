@@ -26,7 +26,10 @@ module.exports = (sequelize, DataTypes) => {
       tax_exemption: DataTypes.BOOLEAN,
       vat: DataTypes.DECIMAL,
       selling_price: DataTypes.INTEGER,
-      payment_method: DataTypes.ENUM,
+      payment_method: {
+        type: DataTypes.ENUM("Cash", "Credit", "L/C"),
+        defaultValue: "Credit",
+      },
       order_date: DataTypes.DATE,
       fullfillment_date: DataTypes.DATE,
     },

@@ -19,7 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       customer_name: DataTypes.STRING,
-      customer_class: DataTypes.ENUM,
+      customer_class: {
+        type: DataTypes.ENUM("Gold", "Silver", "Bronze"),
+        defaultValue: "Bronze",
+      },
       customer_email: DataTypes.STRING,
       customer_phone: DataTypes.INTEGER,
       account_manager: DataTypes.INTEGER,

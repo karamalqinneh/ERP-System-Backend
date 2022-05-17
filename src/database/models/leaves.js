@@ -1,7 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class tickets extends Model {
+  class leaves extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -19,7 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       employee_id: DataTypes.INTEGER,
-      status: DataTypes.ENUM,
+      status: {
+        type: DataTypes.ENUM("Approved", "Declined", "Pending"),
+        defaultValue: "Pending",
+      },
       comments: DataTypes.STRING,
       start_time: DataTypes.DATE,
       end_time: DataTypes.DATE,
