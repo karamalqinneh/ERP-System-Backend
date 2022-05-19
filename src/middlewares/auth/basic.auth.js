@@ -20,7 +20,7 @@ const basicAuth = async (req, res, next) => {
         res.status(403).send("invalid");
       }
     } catch (error) {
-      res.status(403).send("invalid error from basic ");
+      res.status(403).send("invalid error from basic");
     }
   }
 };
