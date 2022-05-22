@@ -1,5 +1,7 @@
 "use strict";
 
+const express = require("express");
+const router = express.Router();
 const bcrypt = require("bcrypt");
 const database = require("../../database/models/index");
 const bearerAuth = require("../../middlewares/auth/bearer.auth");

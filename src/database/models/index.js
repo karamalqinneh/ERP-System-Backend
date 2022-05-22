@@ -42,6 +42,15 @@ Object.keys(db).forEach((modelName) => {
   }
 });
 
+db.products_groups.hasMany(db.items, { foreignKey: "group_id" });
+db.items.belongsTo(db.products_groups, { foreignKey: "group_id" });
+
+db.suppliers.hasMany(db.items, { foreignKey: "supplier_id" });
+db.items.belongsTo(db.suppliers, { foreignKey: "supplier_id" });
+
+db.sales.hasMany(db.items, { foreignKey: "item_id" });
+db.items.belongsTo(db.sales, { foreignKey: "item_id" });
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

@@ -48,8 +48,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.VIRTUAL,
         get() {
           const acl = {
-            user: ["read", "create"],
-            moderator: ["read", "create", "update", "delete"],
+            employee: ["read", "create"],
+            manager: ["read", "create", "update", "delete"],
             admin: [
               "read",
               "create",
