@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       customer_id: DataTypes.INTEGER,
       group_id: DataTypes.INTEGER,
+      item_id: DataTypes.INTEGER,
       product_name: DataTypes.STRING,
       supplier_id: DataTypes.INTEGER,
       account_manager: DataTypes.INTEGER,
