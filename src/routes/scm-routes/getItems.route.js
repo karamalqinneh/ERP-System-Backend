@@ -12,15 +12,16 @@ const getItemsController = async (req, res) => {
       return {
         id: ele["item_id"],
         itemType: ele["product_name"],
-        productGroup: "mechanical",
+        productGroup: ele["products_group"]["group_name"],
         modelName: ele["model_name"],
         supplierName: ele.supplier["supplier_name"],
         quantity: ele["quantity"],
         dimensions: { length: ele["length"], height: ele["height"] },
         unitPrice: ele["unit_price"],
-        sales: 2, // ele["sale"].length
+        sales: ele["sales"].length, // ele["sale"].length
       };
     });
+    console.log(allItems);
     res.status(200).json(responseArray);
   } catch (error) {
     console.log(error);

@@ -42,14 +42,35 @@ Object.keys(db).forEach((modelName) => {
   }
 });
 
+// items relations
+
 db.products_groups.hasMany(db.items, { foreignKey: "group_id" });
 db.items.belongsTo(db.products_groups, { foreignKey: "group_id" });
 
 db.suppliers.hasMany(db.items, { foreignKey: "supplier_id" });
 db.items.belongsTo(db.suppliers, { foreignKey: "supplier_id" });
 
-db.sales.hasMany(db.items, { foreignKey: "item_id" });
-db.items.belongsTo(db.sales, { foreignKey: "item_id" });
+db.items.hasMany(db.sales, { foreignKey: "item_id" });
+db.sales.belongsTo(db.items, { foreignKey: "item_id" });
+
+// suppliers relations
+
+db.suppliers.hasOne(db.products_groups, { foreignKey: "group_id" });
+db.products_groups.belongsTo(db.suppliers, { foreignKey: "group_id" });
+
+db.suppliers.hasMany(db.purchases, { foreignKey: "supplier_id" });
+db.purchases.belongsTo(db.suppliers, { foreignKey: "supplier_id" });
+
+// purchases relations
+
+db.products_groups.hasMany(db.purchases, { foreignKey: "group_id" });
+db.purchases.belongsTo(db.products_groups, { foreignKey: "group_id" });
+
+db.suppliers.hasMany(db.purchases, { foreignKey: "supplier_id" });
+db.purchases.belongsTo(db.suppliers, { foreignKey: "supplier_id" });
+
+db.purchases.hasMany(db.sales, { foreignKey: "supplier_id" });
+db.sales.belongsTo(db.purchases, { foreignKey: "supplier_id" });
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
