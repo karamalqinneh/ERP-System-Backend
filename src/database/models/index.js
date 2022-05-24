@@ -90,6 +90,22 @@ db.customers.belongsTo(db.tickets, { foreignKey: "customer_id" });
 db.sales.hasMany(db.customers, { foreignKey: "customer_id" });
 db.customers.belongsTo(db.sales, { foreignKey: "customer_id" });
 
+// tickets realation
+
+db.employees.hasMany(db.tickets, { foreignKey: "employee_id" });
+db.tickets.belongsTo(db.employees, { foreignKey: "employee_id" });
+
+// sales relations
+
+db.suppliers.hasMany(db.sales, { foreignKey: "supplier_id" });
+db.sales.belongsTo(db.suppliers, { foreignKey: "supplier_id" });
+
+db.products_groups.hasMany(db.sales, { foreignKey: "group_id" });
+db.sales.belongsTo(db.products_groups, { foreignKey: "group_id" });
+
+db.employees.hasMany(db.sales, { foreignKey: "account_manager" });
+db.sales.belongsTo(db.employees, { foreignKey: "account_manager" });
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
