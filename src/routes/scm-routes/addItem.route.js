@@ -2,17 +2,7 @@ const express = require("express");
 const router = express.Router();
 const database = require("../../database/models/index");
 
-// signup Function
 const addItemController = async (req, res) => {
-  console.log(req.body);
-  // let supplierName =
-  //   (await database.suppliers.findOne({
-  //     where: { supplier_name: req.body.supplierName },
-  //   }).supplier_id) || 9999;
-  // let groupId =
-  //   (await database.products_groups.findOne({
-  //     where: { group_name: req.body.itemType },
-  //   }).group_id) || 9999;
   try {
     const addedItem = {
       group_id: req.body.itemType,

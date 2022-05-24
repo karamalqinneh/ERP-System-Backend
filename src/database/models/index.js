@@ -15,9 +15,16 @@ let sequelizeOptions =
             require: true,
             rejectUnauthorized: false,
           },
+          supportBigNumbers: true,
+          bigNumberStrings: true,
         },
       }
-    : {};
+    : {
+        dialectOptions: {
+          supportBigNumbers: true,
+          bigNumberStrings: true,
+        },
+      };
 const db = {};
 
 let sequelize = new Sequelize(POSTGRES_URI, sequelizeOptions);
@@ -71,6 +78,17 @@ db.purchases.belongsTo(db.suppliers, { foreignKey: "supplier_id" });
 
 db.purchases.hasMany(db.sales, { foreignKey: "supplier_id" });
 db.sales.belongsTo(db.purchases, { foreignKey: "supplier_id" });
+
+// customers relations
+
+db.employees.hasMany(db.customers, { foreignKey: "account_manager" });
+db.customers.belongsTo(db.employees, { foreignKey: "account_manager" });
+
+db.tickets.hasMany(db.customers, { foreignKey: "customer_id" });
+db.customers.belongsTo(db.tickets, { foreignKey: "customer_id" });
+
+db.sales.hasMany(db.customers, { foreignKey: "customer_id" });
+db.customers.belongsTo(db.sales, { foreignKey: "customer_id" });
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

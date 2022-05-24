@@ -3,7 +3,6 @@ const router = express.Router();
 
 const database = require("../../database/models/index");
 
-// signup Function
 const getSuppliersController = async (req, res) => {
   try {
     let SupplierProducts = await database.suppliers.findAll({
