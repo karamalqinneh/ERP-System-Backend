@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const database = require("../../database/models/index");
 
-// signup Function
 const getItemsController = async (req, res) => {
   try {
     let allItems = await database.items.findAll({
@@ -21,7 +20,6 @@ const getItemsController = async (req, res) => {
         sales: ele["sales"].length, // ele["sale"].length
       };
     });
-    console.log(allItems);
     res.status(200).json(responseArray);
   } catch (error) {
     console.log(error);

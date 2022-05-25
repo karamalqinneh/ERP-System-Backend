@@ -19,6 +19,8 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       resolution: DataTypes.STRING,
+      customer_id: DataTypes.INTEGER,
+      employee_id: DataTypes.INTEGER,
       status: {
         type: DataTypes.ENUM("Open", "Resolved", "Pending"),
         defaultValue: "Pending",

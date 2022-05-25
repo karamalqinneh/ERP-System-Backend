@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: "Bronze",
       },
       customer_email: DataTypes.STRING,
-      customer_phone: DataTypes.INTEGER,
+      customer_phone: DataTypes.STRING,
       account_manager: DataTypes.INTEGER,
     },
     {
