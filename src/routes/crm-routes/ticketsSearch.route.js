@@ -14,7 +14,6 @@ const ticketsSearchController = async (req, res) => {
       });
       searchConditions["customer_id"] = value.customer_id;
     }
-    console.log(searchConditions, "##########");
     const customerTickets = await database.tickets.findAll({
       where: searchConditions,
       include: [database.employees],
