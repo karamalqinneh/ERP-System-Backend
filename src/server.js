@@ -9,6 +9,7 @@ const cors = require("cors");
 const authRoutes = require("./routes/auth-routes/index");
 const scmRoutes = require("./routes/scm-routes/index");
 const crmRoutes = require("./routes/crm-routes/index");
+const hrRoutes = require("./routes/hr-routes/index");
 const errorHandler = require("./middlewares/error-handlers/500");
 const notFoundHandler = require("./middlewares/error-handlers/404");
 
@@ -24,6 +25,7 @@ app.get("/", (req, res) => {
 app.use(authRoutes);
 app.use(scmRoutes);
 app.use(crmRoutes);
+app.use(hrRoutes);
 
 // Error Handlers
 

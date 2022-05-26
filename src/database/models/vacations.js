@@ -19,11 +19,13 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       employee_id: DataTypes.INTEGER,
+      manager_id: DataTypes.INTEGER,
       status: {
         type: DataTypes.ENUM("Approved", "Declined", "Pending"),
         defaultValue: "Pending",
       },
       comments: DataTypes.STRING,
+      reason: DataTypes.STRING,
       start_date: DataTypes.DATE,
       end_date: DataTypes.DATE,
     },
