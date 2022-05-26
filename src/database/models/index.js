@@ -106,6 +106,16 @@ db.sales.belongsTo(db.products_groups, { foreignKey: "group_id" });
 db.employees.hasMany(db.sales, { foreignKey: "account_manager" });
 db.sales.belongsTo(db.employees, { foreignKey: "account_manager" });
 
+// leaves relations
+
+db.employees.hasMany(db.leaves, { foreignKey: "employee_id" });
+db.leaves.belongsTo(db.employees, { foreignKey: "employee_id" });
+
+// vacations relations
+
+db.employees.hasMany(db.vacations, { foreignKey: "employee_id" });
+db.vacations.belongsTo(db.employees, { foreignKey: "employee_id" });
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
