@@ -24,6 +24,7 @@ const getCustomerSalesController = async (req, res) => {
         quantity: ele["quantity"],
         taxExemption: ele["taxExemption"],
         vat: ele["vat"],
+        status: ele["status"],
         unitPrice: ele["unit_price"],
         paymentMethod: ele["payment_method"],
         orderDate: ele["order_date"],

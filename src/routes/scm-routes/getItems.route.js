@@ -17,7 +17,12 @@ const getItemsController = async (req, res) => {
         quantity: ele["quantity"],
         dimensions: { length: ele["length"], height: ele["height"] },
         unitPrice: ele["unit_price"],
-        sales: ele["sales"].length, // ele["sale"].length
+        sales:
+          ele["sales"] != []
+            ? ele["sales"].reduce((acc, sale) => {
+                return acc + sale.quantity;
+              }, 0)
+            : 0, // ele["sale"].length
       };
     });
     res.status(200).json(responseArray);

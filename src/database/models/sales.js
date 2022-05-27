@@ -32,6 +32,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ENUM("Cash", "Credit", "L/C"),
         defaultValue: "Credit",
       },
+      // status: {
+      //   type: DataTypes.ENUM("Completed", "Pending", "Canceled"),
+      //   defaultValue: "Pending",
+      // },
       order_date: DataTypes.DATE,
       fullfillment_date: DataTypes.DATE,
     },

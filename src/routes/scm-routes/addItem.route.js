@@ -5,7 +5,7 @@ const database = require("../../database/models/index");
 const addItemController = async (req, res) => {
   try {
     const addedItem = {
-      group_id: req.body.itemType,
+      group_id: req.body.itemGroup,
       product_name: req.body.productName,
       model_name: req.body.modelName,
       supplier_id: req.body.supplierName,

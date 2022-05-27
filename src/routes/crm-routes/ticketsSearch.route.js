@@ -5,6 +5,7 @@ const database = require("../../database/models/index");
 const ticketsSearchController = async (req, res) => {
   try {
     let searchConditions = {};
+    console.log(req.body.id, "#############");
     if (req.body.id) searchConditions["ticket_id"] = parseInt(req.body.id);
     if (req.body.date) searchConditions["date"] = req.body.date;
     if (req.body.reso) searchConditions["resolution"] = req.body.reso;
@@ -12,7 +13,9 @@ const ticketsSearchController = async (req, res) => {
       let value = await database.customers.findOne({
         where: { customer_name: req.body.name },
       });
-      searchConditions["customer_id"] = value.customer_id;
+      if (value) {
+        searchConditions["customer_id"] = value.customer_id;
+      }
     }
     const customerTickets = await database.tickets.findAll({
       where: searchConditions,
@@ -23,7 +26,7 @@ const ticketsSearchController = async (req, res) => {
       return {
         id: ele["ticket_id"],
         resolution: ele["resolution"],
-        date: ele["date"],
+        date: `${ele["date"]}`.slice(0, 11),
         details: ele["details"],
         updates: ele["updates"],
         status: ele["status"],
