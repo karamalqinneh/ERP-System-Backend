@@ -7,7 +7,7 @@ const generateSalarySlip = async (id, month) => {
   const employeeFinancials = await database.employees_financials.findAll({
     where: { employee_id: id },
   });
-  //   console.log(employeeFinancials);
+
   const basicSalary = employee.salary;
   const hourlyRate = basicSalary / 180;
   const otDuration = employeeFinancials.reduce((acc, rec) => {
@@ -37,6 +37,7 @@ const generateSalarySlip = async (id, month) => {
       }
     }
   }, 0);
+  const totalDeductions = socialSecurity + otherDeductions;
   const totalBonuses = employeeFinancials.reduce((acc, rec) => {
     if (rec.bonus_amount == null) {
       return acc;
@@ -49,6 +50,17 @@ const generateSalarySlip = async (id, month) => {
       }
     }
   }, 0);
+  let salarySlip = {
+    basicSalary,
+    otDuration,
+    otPayment,
+    totalpayemnt,
+    totalBonuses,
+    socialSecurity,
+    otherDeductions,
+    totalDeductions,
+  };
+  return salarySlip;
 };
 
 module.exports = generateSalarySlip;

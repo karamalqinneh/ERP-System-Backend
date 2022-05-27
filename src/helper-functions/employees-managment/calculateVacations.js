@@ -24,5 +24,5 @@ const calculateMonthlyVacations = async (id, month) => {
   });
   return totalVacations;
 };
-calculateMonthlyVacations(1);
+
 module.exports = calculateMonthlyVacations;
