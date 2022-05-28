@@ -10,7 +10,7 @@ const generateSalarySlip = async (id, month) => {
 
   const basicSalary = employee.salary;
   const hourlyRate = basicSalary / 180;
-  const otDuration = employeeFinancials.reduce((acc, rec) => {
+  const otHours = employeeFinancials.reduce((acc, rec) => {
     if (rec.ot_duration == null) {
       return acc;
     } else {
@@ -22,8 +22,8 @@ const generateSalarySlip = async (id, month) => {
       }
     }
   }, 0);
-  const otPayment = parseInt((hourlyRate * otDuration * 1.5).toFixed(2));
-  const totalpayemnt = otPayment + basicSalary;
+  const otPayment = parseInt((hourlyRate * otHours * 1.5).toFixed(2));
+  const totalPayment = otPayment + basicSalary;
   const socialSecurity = basicSalary * 0.0725;
   const otherDeductions = employeeFinancials.reduce((acc, rec) => {
     if (rec.deduction_amount == null) {
@@ -52,13 +52,14 @@ const generateSalarySlip = async (id, month) => {
   }, 0);
   let salarySlip = {
     basicSalary,
-    otDuration,
+    otHours,
     otPayment,
-    totalpayemnt,
+    totalPayment,
     totalBonuses,
     socialSecurity,
     otherDeductions,
     totalDeductions,
+    netPay: totalPayment - totalDeductions,
   };
   return salarySlip;
 };

@@ -14,6 +14,7 @@ const getLeavesByManagerController = async (req, res) => {
     for (let i = 0; i <= leaves.length - 1; i++) {
       let ele = leaves[i];
       let responseElement = {
+        type: "Leave",
         id: ele["leave_id"],
         employee: `${ele["employee"]["first_name"]} ${ele["employee"]["last_name"]}`,
         startTime: ele["start_time"],

@@ -14,6 +14,7 @@ const getVacationsByManagerController = async (req, res) => {
     for (let i = 0; i <= vacations.length - 1; i++) {
       let ele = vacations[i];
       let responseElement = {
+        type: "Vacation",
         id: ele["vacation_id"],
         employee: `${ele["employee"]["first_name"]} ${ele["employee"]["last_name"]}`,
         startDate: `${ele["start_date"].getDate()}-${ele[

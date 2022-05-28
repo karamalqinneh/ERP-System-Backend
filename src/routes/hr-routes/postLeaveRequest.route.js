@@ -8,6 +8,7 @@ const newLeaveRequestController = async (req, res) => {
       where: { employee_id: req.body.user },
     });
     const leaveRequest = {
+      leave_id: req.body.id,
       start_time: req.body.start,
       end_time: req.body.end,
       leave_date: req.body.date,
