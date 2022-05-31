@@ -7,13 +7,16 @@ require("dotenv").config();
 // signup Function
 const signupController = async (req, res) => {
   try {
+    console.log(process.env.HASH_INDEX);
+    console.log(req.body.password);
     req.body.password = await bcrypt.hash(
       req.body.password,
-      process.env.HASH_INDEX
+      parseInt(process.env.HASH_INDEX)
     );
     const record = await database.employees.create(req.body);
     res.status(201).send(`You have successfully signed up`);
   } catch (error) {
+    console.log(error);
     res.status(403).send("Error occurred");
   }
 };
